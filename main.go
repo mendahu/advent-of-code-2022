@@ -7,14 +7,15 @@ import (
 )
 
 func main() {
-	puzzle := os.Args[1]
+	code := os.Args[1]
 
-	p := map[string]func()int64{
+	puzzles := map[string]func()int64{
 		"01a": puzzles.Puzzle01a,
 		"01b": puzzles.Puzzle01b,
 		"02a": puzzles.Puzzle02a,
-		"02b": puzzles.Puzzle02b}
+		"02b": puzzles.Puzzle02b,
+	}
 
-	answer := p[puzzle]()
+	answer := puzzles[code]()
 	fmt.Println(answer)
 }
