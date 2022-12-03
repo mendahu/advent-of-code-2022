@@ -14,6 +14,10 @@ func Puzzle03b() int64 {
 
 	// loop through groups
 	for {
+		if (group  * 3 >= len(data)) {
+			break;
+		}
+		
 		// get overal index of elves in this group
 		starti := group * 3
 		e1i := starti
@@ -36,60 +40,47 @@ func Puzzle03b() int64 {
 		item := 0
 
 		// loop through items
-		for {
-			foundBadge := false
-
-			// no more items, break out
-			if len(elfRucks[0]) <= item && len(elfRucks[1]) <= item && len(elfRucks[2]) <= item {
-				break;
-			}
-
-			elf := 0
-
-			// loop through elves 1-3
+		ITEMS:
 			for {
-
-				// Found badge or no more elves, break out
-				if foundBadge || elf > 2 {
+				// no more items, break out
+				if len(elfRucks[0]) <= item && len(elfRucks[1]) <= item && len(elfRucks[2]) <= item {
 					break;
 				}
 
-				partner1i := ((elf + 1) % 3)
-				partner2i := ((elf + 2) % 3)
+				elf := 0
 
-				// current elf has items left
-				if len(elfRucks[elf]) > item {
+				// loop through elves 1-3
+				for {
 
-					currentItem := elfRucks[elf][item]
-
-					p1val := rucksacks[partner1i][currentItem]
-					p2val := rucksacks[partner2i][currentItem]
-
-					if p1val && p2val {
-						sumPriorities = sumPriorities + getPriority(currentItem)
-						foundBadge = true
-						break
-					} else {
-						rucksacks[elf][currentItem] = true
+					// Found badge or no more elves, break out
+					if elf > 2 {
+						break;
 					}
+
+					partner1i := ((elf + 1) % 3)
+					partner2i := ((elf + 2) % 3)
+
+					// current elf has items left
+					if len(elfRucks[elf]) > item {
+
+						currentItem := elfRucks[elf][item]
+
+						p1val := rucksacks[partner1i][currentItem]
+						p2val := rucksacks[partner2i][currentItem]
+
+						if p1val && p2val {
+							sumPriorities = sumPriorities + getPriority(currentItem)
+							break ITEMS
+						} else {
+							rucksacks[elf][currentItem] = true
+						}
+					}
+
+					elf++
 				}
-
-				elf++
+				item++
 			}
-
-			// Found the badge, break out
-			if foundBadge {
-				break;
-			}
-
-			item++
-		}
-
 		group++
-		if (group  * 3 >= len(data)) {
-			break;
-		}
-
 	}
 
 	return int64(sumPriorities)
