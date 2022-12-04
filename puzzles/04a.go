@@ -6,10 +6,10 @@ import (
 )
 
 type SectionAssignmentPair struct {
-	r1sta   int
-	r1end		int
-	r2sta  	int
-	r2end		int
+	r1sta	int
+	r1end	int
+	r2sta	int
+	r2end	int
 }
 
 func parseAssignmentPair(raw string) SectionAssignmentPair {
