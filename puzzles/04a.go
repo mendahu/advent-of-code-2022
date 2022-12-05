@@ -3,6 +3,7 @@ package puzzles
 import (
 	"advent/utils"
 	"fmt"
+	"strconv"
 )
 
 type SectionAssignmentPair struct {
@@ -32,7 +33,7 @@ func (ap SectionAssignmentPair) twoOverlapsOne() bool {
 	return ap.r2sta <= ap.r1sta && ap.r2end >= ap.r1end
 }
 
-func Puzzle04a() int64 {
+func Puzzle04a() string {
 	data := utils.FileReader("data/04.txt")
 
 	sumOverlaps := 0
@@ -44,5 +45,7 @@ func Puzzle04a() int64 {
 		}
 	}
 
-	return int64(sumOverlaps)
+	answer := strconv.Itoa(sumOverlaps)
+
+	return answer
 }

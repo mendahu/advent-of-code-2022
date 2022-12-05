@@ -2,10 +2,11 @@ package puzzles
 
 import (
 	"advent/utils"
+	"strconv"
 	"strings"
 )
 
-func Puzzle02a() int64 {
+func Puzzle02a() string {
 	data := utils.FileReader("data/02.txt")
 
 	score := 0
@@ -69,5 +70,7 @@ func Puzzle02a() int64 {
 		// }
 	}
 
-	return int64(score)
+	answer := strconv.Itoa(score)
+
+	return answer
 }

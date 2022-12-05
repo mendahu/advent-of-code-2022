@@ -2,6 +2,7 @@ package puzzles
 
 import (
 	"advent/utils"
+	"strconv"
 )
 
 func getPriority(letter rune) int32 {
@@ -14,7 +15,7 @@ func getPriority(letter rune) int32 {
 	return 0
 }
 
-func Puzzle03a() int64 {
+func Puzzle03a() string {
 	data := utils.FileReader("data/03.txt")
 
 	var sumPriorities int32
@@ -53,5 +54,7 @@ func Puzzle03a() int64 {
 		}
 	}
 
-	return int64(sumPriorities)
+	answer := strconv.Itoa(int(sumPriorities))
+
+	return answer
 }

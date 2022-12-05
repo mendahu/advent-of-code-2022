@@ -7,7 +7,7 @@ import (
 	"strconv"
 )
 
-func Puzzle01a() int64 {
+func Puzzle01a() string {
 	data := utils.FileReader("data/01.txt")
 
 	totals := []int{0}
@@ -59,5 +59,7 @@ func Puzzle01a() int64 {
 	// 	totals[elf] = totals[elf] + calInt
 	// }
 
-	return int64(max)
+	answer := strconv.Itoa(max)
+
+	return answer
 }

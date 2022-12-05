@@ -7,7 +7,7 @@ import (
 	"strconv"
 )
 
-func Puzzle01b() int64 {
+func Puzzle01b() string {
 	data := utils.FileReader("data/01.txt")
 
 	totals := []int{0}
@@ -75,6 +75,7 @@ func Puzzle01b() int64 {
 	// 	totals[elf] = totals[elf] + calInt
 	// }
 
-	return int64(first + second + third)
+	answer := strconv.Itoa(first + second + third)
 
+	return answer
 }
