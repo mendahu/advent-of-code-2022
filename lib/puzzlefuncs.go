@@ -14,6 +14,8 @@ func GetPuzzleFunc(code string) func()string {
 		"04b": puzzles.Puzzle04b,
 		"05a": puzzles.Puzzle05a,
 		"05b": puzzles.Puzzle05b,
+		"06a": puzzles.Puzzle06a,
+		"06b": puzzles.Puzzle06b,
 	}
 
 	return puzzles[code]

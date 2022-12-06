@@ -10,10 +10,13 @@ func (s Ship) GetCrateSlice(stacki int, count int) []string {
 }
 
 func (s Ship) MoveCrates(startStacki int, endStacki int, moves int) {
-	topCrates := s.GetCrateSlice(startStacki, moves)
+	startstack := &s.Stacks[startStacki]
+	endstack := &s.Stacks[endStacki]
 	
-	s.Stacks[endStacki] = append(s.Stacks[endStacki], topCrates...)
-	s.Stacks[startStacki] = s.Stacks[startStacki][:len(s.Stacks[startStacki]) - moves]
+	topCrates := s.GetCrateSlice(startStacki, moves)
+
+	*endstack = append(*endstack, topCrates...)
+	*startstack = s.Stacks[startStacki][:len(*startstack) - moves]
 }
 
 func Puzzle05b() string {
