@@ -49,11 +49,12 @@ func areTouching(first Position, second Position) bool {
 func Puzzle09a() string {
 	data := utils.FileReader("data/09.txt")
 
-	positionTracker := make(map[string]bool)
-	positionTracker["[0,0]"] = true
-
+	positionTracker := make(map[Position]bool)
+	
 	hPos := Position{0,0}
 	tPos := Position{0,0}
+
+	positionTracker[tPos] = true
 
 	for _, move := range data {
 		dir, count := parseCommand(move)
@@ -82,8 +83,7 @@ func Puzzle09a() string {
 				}
 			}
 
-			visitedCoord := getCoorLabel(tPos)
-			positionTracker[visitedCoord] = true
+			positionTracker[tPos] = true
 		}
 	}
 

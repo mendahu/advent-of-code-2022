@@ -2,16 +2,14 @@ package puzzles
 
 import (
 	"advent/utils"
-	"fmt"
 	"strconv"
 )
 
 func Puzzle09b() string {
 	data := utils.FileReader("data/09.txt")
 
-	positionTracker := make(map[string]bool)
-	positionTracker["[0,0]"] = true
-
+	positionTracker := make(map[Position]bool)
+	
 	knots := [10]Position{
 		{0,0},
 		{0,0},
@@ -24,16 +22,14 @@ func Puzzle09b() string {
 		{0,0},
 		{0,0},
 	}
+	
+	positionTracker[knots[9]] = true
 
 	for _, move := range data {
 		dir, count := parseCommand(move)
 		
 		// Loop each move individually
-		for {
-			if count < 1 {
-				break
-			}
-
+		for c := 0; c < count; c++ {
 			knots[0].move(dir) // initial knot move
 			currDir := dir
 
@@ -76,13 +72,9 @@ func Puzzle09b() string {
 				
 			}
 
-			count--
-			visitedCoord := getCoorLabel(knots[9])
-			positionTracker[visitedCoord] = true
+			positionTracker[knots[9]] = true
 		}
 	}
-	fmt.Println(positionTracker)
-
 
 	return strconv.Itoa(len(positionTracker))
 }
